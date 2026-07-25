@@ -7,7 +7,7 @@ ARG HF_TOKEN=""
 
 # install custom nodes into comfyui
 RUN comfy node install --exit-on-fail comfyui-inpaint-cropandstitch@2.1.8 --mode remote || (echo "WARN: comfyui-inpaint-cropandstitch@2.1.8 unavailable in registry, falling back to latest" >&2 && comfy node install --exit-on-fail comfyui-inpaint-cropandstitch --mode remote)
-RUN git clone https://github.com/Gourieff/ComfyUI-ReActor /comfyui/custom_nodes/ComfyUI-ReActor && cd /comfyui/custom_nodes/ComfyUI-ReActor && (git checkout 6ad6b35a4df250d14cb2abf0808c9ffedf59f747 2>/dev/null || (git fetch origin 6ad6b35a4df250d14cb2abf0808c9ffedf59f747 --depth=1 && git checkout 6ad6b35a4df250d14cb2abf0808c9ffedf59f747) || echo "WARN: commit unreachable, falling back to default branch HEAD") && pip install -r requirements.txt
+RUN git clone https://github.com/Gourieff/ComfyUI-ReActor /comfyui/custom_nodes/ComfyUI-ReActor && cd /comfyui/custom_nodes/ComfyUI-ReActor && (git checkout 6ad6b35a4df250d14cb2abf0808c9ffedf59f747 2>/dev/null || (git fetch origin 6ad6b35a4df250d14cb2abf0808c9ffedf59f747 --depth=1 && git checkout 6ad6b35a4df250d14cb2abf0808c9ffedf59f747) || echo "WARN: commit unreachable, falling back to default branch HEAD") && pip install -r requirements.txt && pip install onnxruntime-gpu
 RUN git clone https://github.com/kijai/ComfyUI-KJNodes /comfyui/custom_nodes/ComfyUI-KJNodes && cd /comfyui/custom_nodes/ComfyUI-KJNodes && (git checkout 06a60ac3fec854909f35aba20aa5be39ff59a6e3 2>/dev/null || (git fetch origin 06a60ac3fec854909f35aba20aa5be39ff59a6e3 --depth=1 && git checkout 06a60ac3fec854909f35aba20aa5be39ff59a6e3) || echo "WARN: commit unreachable, falling back to default branch HEAD") && pip install -r requirements.txt
 
 # download models into comfyui
